@@ -9,6 +9,7 @@ node {
     }
     
     stage ("Containerize the app-docker build") {
+	sh "docker stop event-reactclient"
         sh 'docker build --rm -t event-reactclient:v1.0 .'
     }
     
@@ -18,7 +19,6 @@ node {
     }
     
     stage ("Run Docker container instance"){
-	sh "docker stop event-reactclient"
         sh "docker run -d --rm --name event-reactclient -p 3000:3000 event-reactclient:v1.0"
     }
     
