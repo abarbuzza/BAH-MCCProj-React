@@ -2,8 +2,8 @@ const proxy = require('http-proxy-middleware');
 
 module.exports = function(app) {
 
-    app.use(proxy('/api', { target: 'http://10.100.88.215:8080/' }));
-    app.use(proxy('/account', { target: 'http://10.98.22.199:8081/' })); 
+    app.use(proxy('/api', { target: 'http://10.96.81.227:8080/' }));
+    app.use(proxy('/account', { target: 'http://10.107.171.100:8081/' })); 
 	
 	/*app.use(proxy('/api', { target: 'http://172.18.0.2:8080/' }));
 	app.use(proxy('/account', { target: 'http://172.18.0.3:8081/' }));
