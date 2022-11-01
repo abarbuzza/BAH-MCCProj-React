@@ -1,6 +1,9 @@
 node {
     
     stage ("Checkout React Client"){
+	sh "docker stop event-reactclient"
+	sh "kubectl delete service event-reactclient"
+	sh "kubectl delete deployment event-reactclient"
         git branch: 'main', url: 'https://github.com/abarbuzza/BAH-MCCProj-React.git'
     }
     
@@ -9,7 +12,6 @@ node {
     }
     
     stage ("Containerize the app-docker build") {
-	sh "docker stop event-reactclient"
         sh 'docker build --rm -t event-reactclient:v1.0 .'
     }
     
@@ -30,8 +32,6 @@ node {
 	
 	  if(response=="Yes") {
 	    stage('Deploy to Kubenetes cluster') {
-	      sh "kubectl delete service event-reactclient"
-	      sh "kubectl delete deployment event-reactclient"
 	      sh "kubectl create deployment event-reactclient --image=event-reactclient:v1.0"
 	      sh "kubectl expose deployment event-reactclient --type=LoadBalancer --port=80"
 	    }
