@@ -1,9 +1,9 @@
 node {
     
     stage ("Checkout React Client"){
-	//sh "docker stop event-reactclient"
-	//sh "kubectl delete service event-reactclient"
-	// sh "kubectl delete deployment event-reactclient"
+	sh "docker stop event-reactclient"
+	sh "kubectl delete service event-reactclient"
+	sh "kubectl delete deployment event-reactclient"
         git branch: 'main', url: 'https://github.com/abarbuzza/BAH-MCCProj-React.git'
     }
     
